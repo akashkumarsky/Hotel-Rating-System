@@ -1,2 +1,11 @@
-package com.sky.userservice.repositories;public class UserRepository {
+package com.sky.userservice.repositories;
+
+import com.sky.userservice.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,String> {
+
+
+
+
 }
