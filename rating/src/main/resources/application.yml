@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      url: mongodb://localhost:27017
+      database: microservice
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8091
