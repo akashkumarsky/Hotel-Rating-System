@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/ratings")
 public class RatingController {
 
+
     @Autowired
     private RatingService ratingService;
 

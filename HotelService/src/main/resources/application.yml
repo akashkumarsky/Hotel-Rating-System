@@ -7,9 +7,12 @@ spring:
     username: postgres
     password: root
 
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
 
 
