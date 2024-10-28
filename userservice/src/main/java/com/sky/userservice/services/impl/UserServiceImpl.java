@@ -4,6 +4,7 @@ import com.sky.userservice.entities.Hotel;
 import com.sky.userservice.entities.Rating;
 import com.sky.userservice.entities.User;
 import com.sky.userservice.exceptions.ResourceNotFoundExcetion;
+import com.sky.userservice.external.services.HotelService;
 import com.sky.userservice.repositories.UserRepository;
 import com.sky.userservice.services.UserService;
 import org.slf4j.Logger;
@@ -29,6 +30,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private HotelService hotelService;
+
     private Logger  logger= LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
@@ -53,10 +57,10 @@ public class UserServiceImpl implements UserService {
 
         List<Rating> ratings = Arrays.stream(ratingforObject).toList();
         List<Rating> ratingList = ratings.stream().map(rating -> {
-            ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTELSERVICE/hotels/"+rating.getHotelId(), Hotel.class);
-            Hotel hotel = forEntity.getBody();
+            //ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTELSERVICE/hotels/"+rating.getHotelId(), Hotel.class);
+            Hotel hotel = hotelService.getHotel(rating.getHotelId());
 
-            logger.info("response status code: {} ",forEntity.getStatusCode());
+         //   logger.info("response status code: {} ",forEntity.getStatusCode());
 
             rating.setHotel(hotel);
             return rating;
